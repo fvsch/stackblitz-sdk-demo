@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDK VM Demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <p>
+        Theme:
+        <button onclick="setTheme('light')">Light</button>
+        <button onclick="setTheme('dark')">Dark</button>
+      </p>
+      <p>
+        View:
+        <button onclick="setView('default')">Default</button>
+        <button onclick="setView('editor')">Editor</button>
+        <button onclick="setView('preview')">Preview</button>
+      </p>
+      <p>
+        Sidebar:
+        <button onclick="showSidebar(true)">Show</button>
+        <button onclick="showSidebar(false)">Hide</button>
+      </p>
+      <p>
+        Preview:
+        <button onclick="getUrl()">Log URL</button>
+        <button onclick="setUrl()">Change URL</button>
+      </p>
+      <p>
+        Files:
+        <button onclick="openFile()">Open one</button>
+        <button onclick="openFiles()">Open a bunch</button>
+      </p>
+    </nav>
+    <div id="embed"></div>
+    <script type="module" src="/index.ts"></script>
+  </body>
+</html>

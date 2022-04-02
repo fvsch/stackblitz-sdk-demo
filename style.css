@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-family: system-ui, sans-serif;
+  color: #ccc;
+  background: #2e3138;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+nav {
+  flex: none;
+  padding: 12px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 20px;
+  border-bottom: solid 2px #1389fd;
+  font-size: 14px;
+}
+
+nav p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+nav button {
+  padding: 4px 8px;
+  border: solid 1px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+#embed {
+  flex: 1 1 80%;
+  border: none;
+}
