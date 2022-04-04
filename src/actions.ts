@@ -25,7 +25,7 @@ export async function main(origin?: string) {
 
   const vm = await sdk.embedProject("embed", project, {
     origin,
-    openFile: pickFiles(Object.keys(project.files)),
+    openFile: "package.json",
   });
 
   win.setTheme = async (theme: any) => {
@@ -63,7 +63,13 @@ export async function main(origin?: string) {
   };
 
   win.setUrl = async () => {
-    const result = await vm.preview.setUrl("/minimatch/README.md");
+    const files = await vm.getFsSnapshot();
+    if (!files) return;
+    const file = pickFile(
+      Object.keys(project.files).filter((f) => f.startsWith("public/"))
+    ).replace("public/", "");
+
+    const result = await vm.preview.setUrl(`/${file}`);
     console.log("setUrl done", result);
   };
 }
