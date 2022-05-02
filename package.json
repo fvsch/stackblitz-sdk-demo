@@ -12,6 +12,6 @@
     "vite": "^2.9.0"
   },
   "dependencies": {
-    "@stackblitz/sdk": "1.7.0-alpha.2"
+    "@stackblitz/sdk": "1.7.0-alpha.3"
   }
 }

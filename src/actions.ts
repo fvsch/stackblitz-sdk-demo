@@ -8,24 +8,12 @@ const win = window as any;
 export async function main(origin?: string) {
   const project = testProject();
 
-  /* 
-  sdk.openProjectId('nextjs', {
-    origin,
-    openFile: "test/again=again/for sure.txt,style.css",
-  });
-  */
-
-  /*
-  sdk.openProject(project, {
-    newWindow: false,
-    origin,
-    openFile: pickRandomFiles(Object.keys(project.files)),
-  });
-  */
+  let openFiles: string[] = ["package.json"];
 
   const vm = await sdk.embedProject("embed", project, {
     origin,
-    openFile: "package.json",
+    openFile: openFiles,
+    showSidebar: true,
   });
 
   win.setTheme = async (theme: any) => {
@@ -46,15 +34,23 @@ export async function main(origin?: string) {
   win.openFile = async () => {
     const files = await vm.getFsSnapshot();
     if (!files) return;
-    await vm.editor.openFile(pickFile(Object.keys(files)));
+    openFiles = [pickFile(Object.keys(files))];
+    await vm.editor.openFile(openFiles);
     console.log("openFile done");
   };
 
   win.openFiles = async () => {
     const files = await vm.getFsSnapshot();
     if (!files) return;
-    await vm.editor.openFile(pickFiles(Object.keys(files)));
+    openFiles = pickFiles(Object.keys(files));
+    await vm.editor.openFile(openFiles);
     console.log("openFiles done");
+  };
+
+  win.setCurrentFile = async () => {
+    const filePath = pickFile(openFiles.map((f) => f.split(",")).flat());
+    await vm.editor.setCurrentFile(filePath);
+    console.log("setCurrentFile done: " + filePath);
   };
 
   win.getUrl = async () => {
